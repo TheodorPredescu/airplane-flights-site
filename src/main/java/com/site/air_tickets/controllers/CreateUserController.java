@@ -4,6 +4,8 @@ import org.springframework.ui.Model;
 import com.site.air_tickets.models.Users;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import com.site.air_tickets.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,22 +16,25 @@ public class CreateUserController {
     @Autowired
     private UserRepository userRepository;
 
+    private Boolean isLogin = true;
+
     // @ResponseBody
     @GetMapping("/user")
     public String index(Model model) {
 
-        Optional<Users> optional_user = userRepository.findById(1);
+        // Optional<Users> optional_user = userRepository.findById(1);
 
-        if (optional_user.isPresent()) {
-            Users user = optional_user.get();
-            model.addAttribute("nume", user.getFirstName());
-            model.addAttribute("prenume", user.getLastName());
+        model.addAttribute("isLogin", isLogin);
 
-        } else {
-            model.addAttribute("nume", "none");
-            model.addAttribute("prenume", "none");
-        }
+        return "user_login-create";
+    }
 
-        return "user_add";
+    @PostMapping("/user/toggle")
+    public String toggleForm(Model model) {
+
+        isLogin = !isLogin;
+        model.addAttribute("isLogin", isLogin);
+
+        return "redirect:/user";
     }
 }

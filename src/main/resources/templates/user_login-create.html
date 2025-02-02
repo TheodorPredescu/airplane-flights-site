@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/user_login-create.css">
+        <title>User Login/Create</title>
+    </head>
+    <body>
+        <div class="user-form-container">
+            <!-- LOGIN FORM -->
+            <div class="input-user" th:if="${isLogin}">
+                <h2>Login</h2>
+                <form action="#" method="post">
+                    <label for="user-name-login">User Name:</label>
+                    <input type="text" name="user-name" required>
+
+                    <label for="password-login">Password:</label>
+                    <input type="password" name="password" required>
+
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+
+            <!-- CREATE USER FORM -->
+            <div class="input-user" th:if="${!isLogin}">
+                <h2>Create Account</h2>
+                <form action="#" method="post">
+                    <label for="user-name-create">User Name:</label>
+                    <input type="text" name="user-name-create" required>
+
+                    <label for="password-create">Password:</label>
+                    <input type="password" name="password-create" required>
+
+                    <label for="password-create-confirm">Confirm Password:</label>
+                    <input type="password" name="password-create-confirm" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" required>
+
+                    <button type="submit">Create Account</button>
+                </form>
+            </div>
+
+            <!-- TOGGLE BUTTON -->
+            <form action="/user/toggle" method="post">
+                <div class="toggle-button-container">
+                    <button type="submit">Switch to <span th:text="${isLogin} ? 'Create Account' : 'Login'"></span></button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
