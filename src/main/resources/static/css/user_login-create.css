@@ -18,7 +18,7 @@
 
 /* Style input sections */
 .input-user {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 /* Headings for sections */
@@ -48,7 +48,7 @@ input {
 .toggle-button-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 /* Button styling */
@@ -67,6 +67,7 @@ input {
     transition: background-color 0.3s;
 }
 
-.toggle-button-container button:hover {
+.toggle-button-container button:hover,
+.input-user button:hover {
     background-color: #555;
 }

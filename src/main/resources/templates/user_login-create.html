@@ -11,7 +11,7 @@
             <!-- LOGIN FORM -->
             <div class="input-user" th:if="${isLogin}">
                 <h2>Login</h2>
-                <form action="#" method="post">
+                <form action="/user/login" method="post">
                     <label for="user-name-login">User Name:</label>
                     <input type="text" name="user-name" required>
 
@@ -40,6 +40,10 @@
 
                     <button type="submit">Create Account</button>
                 </form>
+            </div>
+
+            <<div>
+                <!-- trebuie sa adaug th:if"${nonexistent === false} sa afiseze error login message" -->
             </div>
 
             <!-- TOGGLE BUTTON -->

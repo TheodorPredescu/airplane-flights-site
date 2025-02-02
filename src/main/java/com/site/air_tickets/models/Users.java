@@ -21,6 +21,10 @@ public class Users {
 
     private String last_name;
 
+    private String username;
+
+    private String password;
+
     private String cnp;
 
     private String city;
@@ -41,10 +45,13 @@ public class Users {
 
     }
 
-    public Users(String fname, String lname, String cnp, String city, String country, String date_of_b, String email,
-            String phone_nr) {
+    public Users(String fname, String lname, String username, String password, String cnp, String city, String country,
+            String date_of_b,
+            String email, String phone_nr) {
         this.first_name = fname;
         this.last_name = lname;
+        this.username = username;
+        this.password = password;
         this.cnp = cnp;
         this.city = city;
         this.country = country;
@@ -60,6 +67,14 @@ public class Users {
 
     public String getLastName() {
         return this.last_name;
+    }
+
+    public String getUserName() {
+        return this.username;
+    }
+
+    public String getPassword() {
+        return this.password;
     }
 
     public String getCNP() {
@@ -102,6 +117,14 @@ public class Users {
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
+    }
+
+    public void setUserName(String uname) {
+        this.username = uname;
+    }
+
+    public void setPassword(String passwd) {
+        this.password = passwd;
     }
 
     public void setCnp(String cnp) {
