@@ -3,9 +3,33 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Link to the external CSS file -->
+        <link rel="stylesheet" href="/css/menu.css">
         <title>Home</title>
     </head>
     <body>
-        <h2>MENU</h2>
+
+        <div class="content-container">
+
+            <div class="login-bar">
+                <p th:if="${user != null}">
+                    <span th:text="${user.firstName}"></span>
+                </p>
+                <button class="dropbtn">Login/Register</button>
+            </div>
+
+            <!-- Main content container -->
+            <div class="inner-container">
+                <div class="left-container" onclick="toggleLeftContainer(this)">
+                    Left Container<br>(Click to expand)
+                </div>
+                <div class="right-container">
+                    Right Container
+                </div>
+            </div>
+        </div>
+
+        <!-- Include the external JS file -->
+        <script src="/js/menu.js"></script>
     </body>
 </html>

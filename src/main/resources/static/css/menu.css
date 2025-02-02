@@ -1,0 +1,115 @@
+/* Reset default margins/padding and box-sizing */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+/* Outer container with a continuous black border */
+.content-container {
+    width: 80%;
+    margin: 20px auto;
+    border: 2px solid black;
+}
+
+/* Login bar: same width and background as inner container, with a bottom border to separate it */
+.login-bar {
+    width: 100%;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Dropdown styling for the single login/register button */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #f9f9f9;
+    color: black;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.dropbtn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    border: 1px solid black;
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #e0e0e0;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Inner container: holds left and right containers */
+.inner-container {
+    display: flex;
+    gap: 10px;
+    /* gap between the left and right containers */
+    width: 100%;
+    height: 80vh;
+    /* 80% of the viewport height */
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+/* Use flex-basis instead of width for responsiveness */
+.left-container {
+    flex: 0 0 15%;
+    /* default: 15% */
+    background-color: #f9f9f9;
+    padding: 10px;
+    transition: flex-basis 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    height: 100%;
+}
+
+/* When expanded, left container becomes 30% */
+.left-container.expanded {
+    flex-basis: 30%;
+}
+
+/* Right container: default is 75% */
+.right-container {
+    flex: 1;
+    background-color: #dcdcdc;
+    /* a different gray to show the effect */
+    padding: 10px;
+    transition: all 0.3s ease;
+    height: 100%;
+}

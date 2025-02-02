@@ -14,4 +14,5 @@ public class MenuController {
     public String slow_menu(Model model) {
         return "menu";
     }
+
 }

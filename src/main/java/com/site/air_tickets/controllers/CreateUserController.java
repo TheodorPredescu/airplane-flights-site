@@ -34,8 +34,12 @@ public class CreateUserController {
     public String loginUser(Model model,
             @RequestParam("user-name") String user_name,
             @RequestParam("password") String password) {
+        System.out.println(user_name);
+        System.out.println(password);
+        System.out.println(loginUserService.userExists(user_name, password));
+        System.out.println(loginUserService.getUserByUsernameAndPasswd(user_name, password).getLastName());
 
-        if (loginUserService.userExists(user_name, password)) {
+        if (!loginUserService.userExists(user_name, password)) {
             model.addAttribute("nonexistent", false);
             return "redirect:/user";
 
