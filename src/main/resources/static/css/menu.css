@@ -24,7 +24,7 @@ body {
     background-color: #f9f9f9;
     border-bottom: 1px solid black;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
 }
 
@@ -75,6 +75,39 @@ body {
     display: block;
 }
 
+/* -------------------------------------------------- */
+/* popup login - register container */
+/* Container for the form fields */
+.modal-body form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* Space between form fields */
+}
+
+/* Each label and input field */
+.modal-body form label,
+.modal-body form input {
+    width: 48%;
+    /* Adjust width to take up half of the row */
+}
+
+/* Optional: Add some margin to the labels and inputs */
+.modal-body form label {
+    margin-bottom: 5px;
+    /* Space between label and input */
+}
+
+/* Optional: Style the input fields */
+.modal-body form input {
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------------------ */
+
 /* Inner container: holds left and right containers */
 .inner-container {
     display: flex;
@@ -91,7 +124,7 @@ body {
 .left-container {
     flex: 0 0 15%;
     /* default: 15% */
-    background-color: #f9f9f9;
+    background-color: #dcdcdc;
     padding: 10px;
     transition: flex-basis 0.3s ease;
     cursor: pointer;
