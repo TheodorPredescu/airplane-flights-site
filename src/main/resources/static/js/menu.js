@@ -13,3 +13,7 @@ function handleRegister() {
     // Insert your register logic here
     alert('Register clicked');
 }
+
+function logout() {
+    window.location.href = "/menu/logout"; // Redirects to logout endpoint
+}

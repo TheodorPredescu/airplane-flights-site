@@ -45,6 +45,12 @@ public class Users {
 
     }
 
+    public Users(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
     public Users(String fname, String lname, String username, String password, String cnp, String city, String country,
             String date_of_b,
             String email, String phone_nr) {

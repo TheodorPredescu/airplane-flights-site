@@ -1,19 +1,17 @@
 package com.site.air_tickets.controllers;
 
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.site.air_tickets.models.Users;
-import com.site.air_tickets.repositories.UserRepository;
+import com.site.air_tickets.service.CreateUserService;
 import com.site.air_tickets.service.LoginUserService;
 
 import jakarta.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
 // @SessionAttributes({ "user", "log_checked" })
@@ -21,6 +19,9 @@ public class CreateUserController {
 
     @Autowired
     LoginUserService loginUserService;
+
+    @Autowired
+    CreateUserService createUserService;
     private Boolean isLogin = true;
     private Users user;
 
@@ -60,6 +61,18 @@ public class CreateUserController {
             return "redirect:/menu";
         }
 
+    }
+
+    @PostMapping("/user/create-user")
+    public String createUser(Model model,
+            HttpSession session,
+            @RequestParam("user-name-create") String user_name,
+            @RequestParam("password-create") String password,
+            @RequestParam("password-create-confirm") String confermed_password,
+            @RequestParam("email") String email) {
+
+        System.out.println(createUserService.createNewUser(user_name, password, confermed_password, email));
+        return "redirect:/menu";
     }
 
     @PostMapping("/user/toggle")

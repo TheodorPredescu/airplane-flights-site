@@ -8,4 +8,6 @@ import com.site.air_tickets.models.Users;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Integer> {
     Users findByUsernameAndPassword(String username, String password);
+
+    Users findByEmail(String email);
 }

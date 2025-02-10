@@ -31,8 +31,8 @@ public class MenuController {
             if (logged_checking == true) {
                 user = (Users) session.getAttribute("user");
                 model.addAttribute("user", user);
-                logged = true;
             }
+            logged = logged_checking;
         }
 
         model.addAttribute("log_checked", logged);
@@ -46,7 +46,7 @@ public class MenuController {
             @RequestParam("password") String password) {
 
         if (!loginUserService.userExists(user_name, password)) {
-            System.out.println("LOGIN USER SERVICE USER EXISTS!");
+            System.out.println("LOGIN USER SERVICE -- USER EXISTS!");
             return "menu";
         }
         user = (Users) loginUserService.getUserByUsernameAndPasswd(user_name, password);
@@ -55,4 +55,11 @@ public class MenuController {
         return "redirect:/menu";
     }
 
+    @GetMapping("/menu/logout")
+    public String logout(HttpSession session) {
+        // session.invalidate(); // Clears session data
+        session.removeAttribute("user");
+        session.setAttribute("log_checked", false);
+        return "redirect:/menu";
+    }
 }

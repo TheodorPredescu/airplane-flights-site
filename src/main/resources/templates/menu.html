@@ -13,7 +13,8 @@
         <div class="content-container">
 
             <div class="login-bar">
-                <button th:if="${log_checked == true}" th:text="${user.firstName}" class="dropbtn"></button>
+                <button type="button" th:if="${log_checked == true}" th:text="${user.firstName}"
+                    class="dropbtn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#userModal"></button>
                 <!-- <p th:if="${log_checked == true}"> -->
                 <!--     <span th:text="${user.firstName}"></span> -->
                 <!-- </p> -->
@@ -45,6 +46,22 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Modal (Appears when clicking username button) -->
+            <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="userModalLabel">User Options</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p><strong>Welcome, </strong><span th:if="${log_checked == true}" th:text="${user.firstName}"></span>!</p>
+                            <button class="btn btn-danger mt-2" onclick="logout()">Logout</button>
                         </div>
                     </div>
                 </div>
