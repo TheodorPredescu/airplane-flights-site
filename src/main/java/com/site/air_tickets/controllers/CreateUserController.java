@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.site.air_tickets.models.Users;
+import com.site.air_tickets.repositories.UserRepository;
 import com.site.air_tickets.service.CreateUserService;
 import com.site.air_tickets.service.LoginUserService;
 
@@ -71,8 +72,27 @@ public class CreateUserController {
             @RequestParam("password-create-confirm") String confermed_password,
             @RequestParam("email") String email) {
 
-        System.out.println(createUserService.createNewUser(user_name, password, confermed_password, email));
-        return "redirect:/menu";
+        // It creates new users, but it does not find them with
+        // getUserByUsernameAndPasswd for some reason
+        int error = createUserService.createNewUser(user_name, password, confermed_password, email);
+        if (error == 0) {
+
+            System.out.println("user created with success!");
+            Users user = loginUserService.getUserByUsernameAndPasswd(user_name, password);
+
+            if (user != null) {
+                System.out.println("user found");
+                session.setAttribute("log_checked", true);
+                session.setAttribute("user", user);
+                return "redirect:/menu";
+            }
+        }
+
+        // System.out.println(error);
+
+        // model.addAttribute(attributeName, attributeValue)
+        return "redirect:/user";
+
     }
 
     @PostMapping("/user/toggle")

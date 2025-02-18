@@ -42,4 +42,64 @@ public class Ticket {
 
     @Column(value = "arrival_date")
     private LocalDateTime arrival_date;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Set<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Orders> orders) {
+        this.orders = orders;
+    }
+
+    public Seat getSeat_ticket() {
+        return seat_ticket;
+    }
+
+    public void setSeat_ticket(Seat seat_ticket) {
+        this.seat_ticket = seat_ticket;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public String getDeparture() {
+        return departure;
+    }
+
+    public void setDeparture(String departure) {
+        this.departure = departure;
+    }
+
+    public LocalDateTime getDeparture_date() {
+        return departure_date;
+    }
+
+    public void setDeparture_date(LocalDateTime departure_date) {
+        this.departure_date = departure_date;
+    }
+
+    public LocalDateTime getArrival_date() {
+        return arrival_date;
+    }
+
+    public void setArrival_date(LocalDateTime arrival_date) {
+        this.arrival_date = arrival_date;
+    }
 }

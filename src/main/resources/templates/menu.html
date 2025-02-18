@@ -13,13 +13,14 @@
         <div class="content-container">
 
             <div class="login-bar">
-                <button type="button" th:if="${log_checked == true}" th:text="${user.firstName}"
+                <button type="button" th:if="${log_checked == true}" th:text="${user.userName}"
                     class="dropbtn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#userModal"></button>
                 <!-- <p th:if="${log_checked == true}"> -->
                 <!--     <span th:text="${user.firstName}"></span> -->
                 <!-- </p> -->
                 <!-- <button  class="dropbtn"></button> -->
-                <button type="button" th:if="${log_checked != true}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                <button type="button" th:if="${log_checked != true}" class="btn btn-primary"
+                    data-bs-toggle="modal" data-bs-target="#myModal">
                     Login/Register
                 </button>
             </div>
@@ -59,26 +60,142 @@
                             <h5 class="modal-title" id="userModalLabel">User Options</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            <p><strong>Welcome, </strong><span th:if="${log_checked == true}" th:text="${user.firstName}"></span>!</p>
+                        <div class="modal-body" th:if="${log_checked == true}">
+                            <p th:if="${user.firstName != null}" ><strong>Welcome, </strong><span th:text="${user.firstName}"></span>!</p>
+                            <p th:if="${user.firstName == null}" ><strong>Welcome user!</strong></p>
+                            <br>
+                            <p>Modify user info:</p>
+
+                            <form action="/menu/logout/change_user_info" method="post">
+                                <div class="userInfoContainer">
+                                    <div class="user-info-row">
+                                        <label for="user-name-change">User name:</label>
+                                        <input type="text" name="user-name-change">
+                                    </div>
+                                    <div class="user-info-row">
+                                        <label for="first-name-change">First name:</label>
+                                        <input type="text" name="first-name-change">
+                                    </div>
+                                    <div class="user-info-row">
+                                        <label for="last-name-change">Last name:</label>
+                                        <input type="text" name="last-name-change">
+                                    </div>
+                                    <div class="user-info-row">
+                                        <label for="password-change">New password:</label>
+                                        <input type="password" name="password-change">
+                                    </div>
+                                    <div class="user-info-row">
+                                        <label for="password-change-confirm">Confirm password:</label>
+                                        <input type="password" name="password-change-confirm">
+                                    </div>
+                                    <div class="user-info-row">
+                                        <label for="cnp-change">CNP:</label>
+                                        <input type="text" name="cnp-change">
+                                    </div>
+                                    <div class="user-info-row">
+                                        <label for="city-change">Domicile:</label>
+                                        <input type="text" name="city-change">
+                                    </div>
+                                    <div class="user-info-row">
+                                        <label for="country-change">Country:</label>
+                                        <input type="text" name="country-change">
+                                    </div>
+                                    <div class="user-info-row">
+                                        <label for="date-of-birth-change">Date of Birth:</label>
+                                        <input type="date" name="date-of-birth-change">
+                                    </div>
+                                    <div class="user-info-row">
+                                        <label for="email-change">Email:</label>
+                                        <input type="email" name="email-change">
+                                    </div>
+                                    <div class="user-info-row">
+                                        <label for="phone-number-change">Phone Number:</label>
+                                        <input type="tel" name="phone-number-change">
+                                    </div>
+                                </div>
+                                <button type="submit">Create Account</button>
+                            </form>
+
                             <button class="btn btn-danger mt-2" onclick="logout()">Logout</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-
-
             <!-- Main content container -->
             <div class="inner-container">
-                <div class="left-container" onclick="toggleLeftContainer(this)">
-                    Left Container<br>(Click to expand)
+                <!-- onclick="toggleLeftContainer(this)" -->
+                <div class="left-container">
+                    <h5>Filters</h5>
+                    <form action="/menu/filter" method="get">
+                        <!-- Price Range -->
+                        <div class="mb-2">
+                            <label for="filter-price-min" class="form-label">Price Range:</label>
+                            <div class="d-flex">
+                                <input type="number" id="filter-price-min" name="price_min" class="form-control me-2" placeholder="Min">
+                                <input type="number" id="filter-price-max" name="price_max" class="form-control" placeholder="Max">
+                            </div>
+                        </div>
+
+                        <!-- Number of Stops -->
+                        <div class="mb-2">
+                            <label for="filter-stops" class="form-label">Number of Stops:</label>
+                            <select id="filter-stops" name="stops" class="form-select">
+                                <option value="-1">Any</option>
+                                <option value="0">Direct</option>
+                                <option value="1">1 Stop</option>
+                                <option value="2">2+ Stops</option>
+                            </select>
+                        </div>
+
+                        <!-- Cabin Type -->
+                        <div class="mb-2">
+                            <label for="filter-cabin" class="form-label">Cabin Type:</label>
+                            <select id="filter-cabin" name="cabin" class="form-select">
+                                <option value="">Any</option>
+                                <option value="economy">Economy</option>
+                                <option value="premium_economy">Premium Economy</option>
+                                <option value="business">Business</option>
+                                <option value="first">First Class</option>
+                            </select>
+                        </div>
+
+                        <!-- Departure Time -->
+                        <div class="mb-2">
+                            <label for="filter-departure" class="form-label">Departure Time:</label>
+                            <input type="date" id="filter-departure" name="departure_date" class="form-control">
+                        </div>
+
+                        <!-- Airlines -->
+                        <div class="mb-2">
+                            <label for="filter-airline" class="form-label">Preferred Airline:</label>
+                            <input type="text" id="filter-airline" name="airline" class="form-control" placeholder="Airline Name">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+                    </form>
                 </div>
                 <div class="right-container">
-                    Right Container
+                    <ul>
+                        <li th:each="ticket : ${allTickets}">
+                            <div class="showTickets">
+                                <b>Departure: </b><span th:text="${ticket.departure}"></span>
+                                <br>
+                                <b>Departure time: </b><span th:text="${#temporals.format(ticket.departure_date, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                                <br>
+                                <b>Destination: </b><span th:text="${ticket.destination}"></span>
+                                <br>
+                                <b>Destination time: </b><span th:text="${#temporals.format(ticket.arrival_date, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                                <br>
+                                <b>Price: </b><span th:text="${ticket.price}"></span><b> RON.</b>
+                                <br>
+                                <hr>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
+
         </div>
 
         <!-- Include the external JS file -->

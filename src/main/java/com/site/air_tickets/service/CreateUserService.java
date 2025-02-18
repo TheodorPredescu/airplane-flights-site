@@ -6,10 +6,17 @@ import org.springframework.stereotype.Service;
 import com.site.air_tickets.models.Users;
 import com.site.air_tickets.repositories.UserRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+
 @Service
 public class CreateUserService {
 
     private final UserRepository userRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public CreateUserService(UserRepository userRepository) {
@@ -17,6 +24,7 @@ public class CreateUserService {
 
     }
 
+    @Transactional
     public Integer createNewUser(String username, String password, String confirm_Password, String email) {
 
         if (userRepository.findByEmail(email) != null)
@@ -29,10 +37,14 @@ public class CreateUserService {
             return 4;
         if (!checkEmail(email))
             return 5;
+        if (userRepository.findByUsername(username) != null) {
+            System.out.println(username);
+            return 6;
+        }
 
-        // Users user = new Users(username, password, email);
-        // userRepository.save(user);
-
+        Users user = new Users(username, password, email);
+        userRepository.save(user);
+        entityManager.flush();
         return 0;
     }
 
