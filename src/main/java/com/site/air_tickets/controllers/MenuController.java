@@ -35,14 +35,22 @@ public class MenuController {
     private Users user;
     private List<Ticket> shown_tickets = new ArrayList<>();
 
+    // filters
+    Double price_min_final, price_max_final;
+    Integer stops_final;
+    String cabin_final, airline_final;
+    LocalDate departure_date_final;
+
     @GetMapping("/menu")
-    public String slow_menu(Model model, HttpSession session) {
+    public String slow_menu(Model model, HttpSession session,
+            @RequestParam(value = "price_min", required = false) Double price_min) {
 
         // List<Ticket> list_of_tickets = menuService.allTickets();
         // for (Ticket elem : list_of_tickets) {
         // System.out.println(elem.getId() + " -> " + elem.getDeparture() + ", " +
         // elem.getDestination());
         // }
+        System.out.println("price min in the menu getter: " + price_min);
 
         Boolean logged_checking = (Boolean) session.getAttribute("log_checked");
 
@@ -60,14 +68,21 @@ public class MenuController {
             shown_tickets.addAll(menuService.allTickets());
         }
 
-        filter_active = false;
-
         for (Ticket elem : shown_tickets) {
             System.out.println(elem.getDeparture() + " -> " + elem.getDestination());
         }
-        model.addAttribute("allTickets", shown_tickets);
+        System.out.println();
+        System.out.println();
 
+        model.addAttribute("allTickets", shown_tickets);
         model.addAttribute("log_checked", logged);
+
+        model.addAttribute("price_min", price_min_final);
+        model.addAttribute("price_max", price_max_final);
+        model.addAttribute("stops", stops_final);
+        model.addAttribute("cabin", cabin_final);
+        model.addAttribute("departure_date", departure_date_final);
+        model.addAttribute("airline", airline_final);
 
         return "menu";
     }
@@ -116,15 +131,15 @@ public class MenuController {
         System.out.println("cabin: " + cabin);
         System.out.println("departure_date: " + departure_date);
         System.out.println("airline: " + airline);
+        System.out.println();
 
-        model.addAttribute("price_min", price_min);
-        model.addAttribute("price_max", price_max);
-        model.addAttribute("stops", stops);
-        model.addAttribute("cabin", cabin);
-        model.addAttribute("departure_date", departure_date);
-        model.addAttribute("airline", airline);
+        price_min_final = price_min;
+        price_max_final = price_max;
+        stops_final = stops;
+        cabin_final = cabin;
+        departure_date_final = departure_date;
+        airline_final = airline;
 
-        System.out.println("**************88888");
         shown_tickets.clear();
         shown_tickets.addAll(menuService.filterTickets(price_min, price_max, stops, cabin, departure_date, airline));
         filter_active = true;

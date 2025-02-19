@@ -132,8 +132,8 @@
                         <div class="mb-2">
                             <label for="filter-price-min" class="form-label">Price Range:</label>
                             <div class="d-flex">
-                                <input type="number" id="filter-price-min" name="price_min" class="form-control me-2" placeholder="Min">
-                                <input type="number" id="filter-price-max" name="price_max" class="form-control" placeholder="Max">
+                                <input type="number" id="filter-price-min" name="price_min" class="form-control me-2" placeholder="Min" th:value="${price_min}">
+                                <input type="number" id="filter-price-max" name="price_max" class="form-control" placeholder="Max" th:value="${price_max}">
                             </div>
                         </div>
 
@@ -141,10 +141,10 @@
                         <div class="mb-2">
                             <label for="filter-stops" class="form-label">Number of Stops:</label>
                             <select id="filter-stops" name="stops" class="form-select">
-                                <option value="-1">Any</option>
-                                <option value="0">Direct</option>
-                                <option value="1">1 Stop</option>
-                                <option value="2">2+ Stops</option>
+                                <option value="-1" th:selected="${stops == -1}">Any</option>
+                                <option value="0" th:selected="${stops == 0}">Direct</option>
+                                <option value="1" th:selected="${stops == 1}">1 Stop</option>
+                                <option value="2" th:selected="${stops == 2}">2+ Stops</option>
                             </select>
                         </div>
 
@@ -152,24 +152,24 @@
                         <div class="mb-2">
                             <label for="filter-cabin" class="form-label">Cabin Type:</label>
                             <select id="filter-cabin" name="cabin" class="form-select">
-                                <option value="">Any</option>
-                                <option value="economy">Economy</option>
-                                <option value="premium_economy">Premium Economy</option>
-                                <option value="business">Business</option>
-                                <option value="first">First Class</option>
+                                <option value="" th:selected="${cabin==''}">Any</option>
+                                <option value="economy" th:selected="${cabin=='economy'}">Economy</option>
+                                <option value="premium_economy" th:selected="${cabin=='premium_economy'}">Premium Economy</option>
+                                <option value="business" th:selected="${cabin=='business'}">Business</option>
+                                <option value="first" th:selected="${cabin=='first'}">First Class</option>
                             </select>
                         </div>
 
                         <!-- Departure Time -->
                         <div class="mb-2">
                             <label for="filter-departure" class="form-label">Departure Time:</label>
-                            <input type="date" id="filter-departure" name="departure_date" class="form-control">
+                            <input type="date" id="filter-departure" name="departure_date" class="form-control" th:value="${departure_date}">
                         </div>
 
                         <!-- Airlines -->
                         <div class="mb-2">
                             <label for="filter-airline" class="form-label">Preferred Airline:</label>
-                            <input type="text" id="filter-airline" name="airline" class="form-control" placeholder="Airline Name">
+                            <input type="text" id="filter-airline" name="airline" class="form-control" placeholder="Airline Name" th:value="${airline}">
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
