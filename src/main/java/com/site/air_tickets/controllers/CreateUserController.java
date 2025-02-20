@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.site.air_tickets.models.Users;
-import com.site.air_tickets.repositories.UserRepository;
 import com.site.air_tickets.service.CreateUserService;
 import com.site.air_tickets.service.LoginUserService;
 

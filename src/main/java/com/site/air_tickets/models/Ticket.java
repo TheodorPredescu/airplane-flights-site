@@ -37,11 +37,21 @@ public class Ticket {
 
     private String departure;
 
+    private Integer class_ticket;
+
     @Column(value = "departure_date")
     private LocalDateTime departure_date;
 
     @Column(value = "arrival_date")
     private LocalDateTime arrival_date;
+
+    public Integer getClass_ticket() {
+        return class_ticket;
+    }
+
+    public void setClass_ticket(Integer class_ticket) {
+        this.class_ticket = class_ticket;
+    }
 
     public Integer getId() {
         return id;

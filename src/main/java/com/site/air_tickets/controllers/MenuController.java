@@ -37,19 +37,13 @@ public class MenuController {
 
     // filters
     Double price_min_final, price_max_final;
-    Integer stops_final = -1;
-    String cabin_final, airline_final;
+    Integer stops_final = -1, class_ticket_final;
+    String airline_final;
     LocalDate departure_date_final;
 
     @GetMapping("/menu")
     public String slow_menu(Model model, HttpSession session,
             @RequestParam(value = "price_min", required = false) Double price_min) {
-
-        // List<Ticket> list_of_tickets = menuService.allTickets();
-        // for (Ticket elem : list_of_tickets) {
-        // System.out.println(elem.getId() + " -> " + elem.getDeparture() + ", " +
-        // elem.getDestination());
-        // }
 
         Boolean logged_checking = (Boolean) session.getAttribute("log_checked");
 
@@ -69,18 +63,12 @@ public class MenuController {
             shown_tickets.addAll(menuService.allTickets());
         }
 
-        for (Ticket elem : shown_tickets) {
-            System.out.println(elem.getDeparture() + " -> " + elem.getDestination());
-        }
-        System.out.println();
-        System.out.println();
-
         model.addAttribute("allTickets", shown_tickets);
         model.addAttribute("log_checked", logged);
         model.addAttribute("price_min", price_min_final);
         model.addAttribute("price_max", price_max_final);
         model.addAttribute("stops", stops_final);
-        model.addAttribute("cabin", cabin_final);
+        model.addAttribute("class_ticket", class_ticket_final);
         model.addAttribute("departure_date", departure_date_final);
         model.addAttribute("airline", airline_final);
 
@@ -97,6 +85,7 @@ public class MenuController {
             System.out.println("LOGIN USER SERVICE -- USER EXISTS!");
             return "menu";
         }
+
         user = (Users) loginUserService.getUserByUsernameAndPasswd(user_name, password);
         session.setAttribute("user", user);
         session.setAttribute("log_checked", true);
@@ -122,14 +111,14 @@ public class MenuController {
             @RequestParam(value = "price_min", required = false) Double price_min,
             @RequestParam(value = "price_max", required = false) Double price_max,
             @RequestParam(value = "stops") Integer stops,
-            @RequestParam(value = "cabin") String cabin,
+            @RequestParam(value = "class_ticket") Integer class_ticket,
             @RequestParam(value = "departure_date", required = false) LocalDate departure_date,
             @RequestParam(value = "airline", required = false) String airline,
             @RequestParam(value = "action", required = false) String action) {
 
         System.out.println("price: " + price_min + ", " + price_max);
         System.out.println("stops: " + stops);
-        System.out.println("cabin: " + cabin);
+        System.out.println("class_ticket: " + class_ticket);
         System.out.println("departure_date: " + departure_date);
         System.out.println("airline: " + airline);
         System.out.println("action: " + action);
@@ -141,20 +130,21 @@ public class MenuController {
             price_min_final = price_min;
             price_max_final = price_max;
             stops_final = stops;
-            cabin_final = cabin;
+            class_ticket_final = class_ticket;
             departure_date_final = departure_date;
             airline_final = airline;
 
             shown_tickets.clear();
             shown_tickets
-                    .addAll(menuService.filterTickets(price_min, price_max, stops, cabin, departure_date, airline));
+                    .addAll(menuService.filterTickets(price_min, price_max, stops, class_ticket, departure_date,
+                            airline));
 
         } else {
 
             price_max_final = null;
             price_min_final = null;
             stops_final = -1;
-            cabin_final = "";
+            class_ticket_final = -1;
             departure_date_final = null;
             airline_final = "";
 

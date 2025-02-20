@@ -26,7 +26,7 @@ public class MenuService {
     }
 
     public List<Ticket> filterTickets(Double price_min, Double price_max,
-            Integer stops, String cabin,
+            Integer stops, Integer class_ticket,
             LocalDate departure_date, String airline) {
 
         List<Ticket> allTickets = ticketRepository.findAll(), filledTickets = new ArrayList<>();
@@ -43,6 +43,10 @@ public class MenuService {
 
             if (departure_date != null)
                 if (!departure_date.equals(elem.getDeparture_date().toLocalDate()))
+                    continue;
+
+            if (class_ticket != -1)
+                if (elem.getClass_ticket() != class_ticket)
                     continue;
 
             filledTickets.add(elem);
