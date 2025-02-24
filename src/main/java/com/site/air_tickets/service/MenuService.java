@@ -29,6 +29,18 @@ public class MenuService {
             Integer stops, Integer class_ticket,
             LocalDate departure_date, String airline) {
 
+        // List<Ticket> filledTickets = ticketRepository.find(price_min, price_max,
+        // departure_date.atStartOfDay(),
+        // departure_date.plusDays(1).atStartOfDay(),
+        // class_ticket);
+        //
+        // System.out.println("it got to here!");
+        // for (Ticket elem : filledTickets) {
+        //
+        // System.out.println(elem.getDestination() + "<-" + elem.getDeparture());
+        //
+        // }
+
         List<Ticket> allTickets = ticketRepository.findAll(), filledTickets = new ArrayList<>();
 
         for (Ticket elem : allTickets) {

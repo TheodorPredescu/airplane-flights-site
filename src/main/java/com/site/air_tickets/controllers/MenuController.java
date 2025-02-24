@@ -28,16 +28,16 @@ public class MenuController {
     MenuService menuService;
     @Autowired
     LoginUserService loginUserService;
-
     @Autowired
     ModifyUserService modifyUserService;
+
     private Boolean logged = false, filter_active = false;
     private Users user;
     private List<Ticket> shown_tickets = new ArrayList<>();
 
     // filters
     Double price_min_final, price_max_final;
-    Integer stops_final = -1, class_ticket_final;
+    Integer stops_final = -1, class_ticket_final = -1;
     String airline_final;
     LocalDate departure_date_final;
 
@@ -116,14 +116,14 @@ public class MenuController {
             @RequestParam(value = "airline", required = false) String airline,
             @RequestParam(value = "action", required = false) String action) {
 
-        System.out.println("price: " + price_min + ", " + price_max);
-        System.out.println("stops: " + stops);
-        System.out.println("class_ticket: " + class_ticket);
-        System.out.println("departure_date: " + departure_date);
-        System.out.println("airline: " + airline);
-        System.out.println("action: " + action);
-        System.out.println();
-
+        // System.out.println("price: " + price_min + ", " + price_max);
+        // System.out.println("stops: " + stops);
+        // System.out.println("class_ticket: " + class_ticket);
+        // System.out.println("departure_date: " + departure_date);
+        // System.out.println("airline: " + airline);
+        // System.out.println("action: " + action);
+        // System.out.println();
+        //
         filter_active = !"reset".equals(action);
         if (filter_active) {
 

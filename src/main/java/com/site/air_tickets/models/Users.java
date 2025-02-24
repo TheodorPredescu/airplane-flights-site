@@ -13,28 +13,20 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "users")
 public class Users {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String first_name;
-
     private String last_name;
-
     private String username;
-
     private String password;
-
     private String cnp;
-
     private String city;
-
     private String country;
-
     private String date_of_birth;
-
     private String email;
-
     private String phone_number;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)

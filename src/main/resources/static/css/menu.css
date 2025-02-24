@@ -185,8 +185,10 @@ body {
 }
 
 .user-info-row label {
-    width: 150px;
-    text-align: right;
+    display: block;
+    white-space: normal;
+    /* width: 150px; */
+    /* text-align: right; */
 }
 
 .user-info-row input {
