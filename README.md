@@ -1,5 +1,6 @@
 ## Overview  
-AWJ is a web application for purchasing airline tickets, built with Java Spring, MySQL, and Thymeleaf. It offers an intuitive interface for users to search for flights, select seats, and complete bookings.  
+AWJ is a web application for purchasing airline tickets, built with Java Spring, MySQL, and Thymeleaf. It offers an intuitive interface for users to search for flights, select seats, and complete bookings.
+
 ![Alt Text](pictures/home-page.png)
 
 ## Features  
